@@ -1,13 +1,7 @@
 def convert_housing_data_to_quarters():
     '''Converts the housing data to quarters and returns it as mean 
-    values in a dataframe. This dataframe should be a dataframe with
-    columns for 2000q1 through 2016q3, and should have a multi-index
-    in the shape of ["State","RegionName"].
-    
-    Note: Quarters are defined in the assignment description, they are
-    not arbitrary three month periods.
-    
-    The resulting dataframe should have 67 columns, and 10,730 rows.
+    values in a dataframe. Only using columns from 2000q1 through
+    2016q3. Uses a State/RegionName multi-index. Returns housing dataframe.
     '''
 
     housing = pd.read_csv('City_Zhvi_AllHomes.csv')
@@ -40,5 +34,4 @@ def convert_housing_data_to_quarters():
     housing = housing[columns_to_keep]
     return housing
 
-convert_housing_data_to_quarters()
 

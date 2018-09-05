@@ -1,14 +1,17 @@
 def get_list_of_university_towns():
     '''Returns a DataFrame of towns and the states they are in from the 
-    university_towns.txt file. The format of the DataFrame will be:
-    DataFrame( [ ["Michigan", "Ann Arbor"], ["Michigan", "Yipsilanti"] ], 
-    columns=["State", "RegionName"]  )
+    university_towns.txt file.
+
+    The format of the DataFrame will have two columns: "State" and "RegionName"
     
     The following cleaning will be done:
 
     1. For "State", removing characters from "[" to the end.
-    2. For "RegionName", when applicable, removing every character from " (" to the end.
-    3. Depending on how the data is read, a newline character ('\n') may need to be removed. '''
+    2. For "RegionName", when applicable, removing every character
+       from " (" to the end.
+    3. Depending on how the data is read, a newline character ('\n')
+       may need to be removed.
+    '''
 
     utowns = pd.read_table('university_towns.txt', header=None, names = ['RegionName'])
 
@@ -21,7 +24,6 @@ def get_list_of_university_towns():
     utowns.drop(labels=['State'], axis=1,inplace = True)
     utowns.insert(0, 'State', states)
     utowns.reset_index(drop=True, inplace = True)
-    # utowns = utowns.set_index('State')
     
     return utowns
 
@@ -38,4 +40,4 @@ def clean_region(row):
     sep = ' ('
     return rowval.split(sep, 1)[0]
 
-get_list_of_university_towns()
+

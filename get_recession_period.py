@@ -1,5 +1,5 @@
 def clean_gdp():
-    # read and clean gdplev excel file
+    # read and get needed columns from gdplev excel file
     gdp = pd.read_excel('gdplev.xls')
     columns_to_keep = ['Unnamed: 4', 'Unnamed: 5', 'Unnamed: 6']
     gdp = gdp[columns_to_keep]
@@ -10,14 +10,15 @@ def clean_gdp():
     gdp = gdp[gdp['Quarter'].str.startswith('2')]
     gdp.reset_index(drop = True, inplace = True)
     
-    # create column to compare GDP from quarter to quarter
+    # create column to compare GDP change from quarter to quarter
     gdp['GDP Change'] = gdp['GDP Current'] - gdp['GDP Current'].shift(1)
 
     return gdp
 
 def get_recession_start():
     '''Returns the year and quarter of the recession start time as a 
-    string value in a format such as 2005q3'''
+    string value in a format such as 2005q3
+    '''
     gdp = clean_gdp()
     
     # look for two successive quarters with negative change in GDP
@@ -29,13 +30,10 @@ def get_recession_start():
 
     return recess_qtr
 
-get_recession_start()
-
-# next q ------------------------------------
-
 def get_recession_end():
     '''Returns the year and quarter of the recession end time as a 
-    string value in a format such as 2005q3'''
+    string value in a format such as 2005q3
+    '''
     gdp = clean_gdp()
     
     # start at the beginning of the recession
@@ -49,13 +47,10 @@ def get_recession_end():
             break
     return end_qtr
 
-get_recession_end()
-
-# next q ------------------------------------
-
 def get_recession_bottom():
     '''Returns the year and quarter of the recession bottom time as a 
-    string value in a format such as 2005q3'''
+    string value in a format such as 2005q3
+    '''
     gdp = clean_gdp()
     
     # get index locations of recession start and end
@@ -75,5 +70,4 @@ def get_recession_bottom():
             
     return bottom_qtr
 
-get_recession_bottom()
 
