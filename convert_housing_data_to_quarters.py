@@ -1,10 +1,9 @@
-def convert_housing_data_to_quarters():
+def convert_housing_data_to_quarters(housing):
     '''Converts the housing data to quarters and returns it as mean 
     values in a dataframe. Only using columns from 2000q1 through
     2016q3. Uses a State/RegionName multi-index. Returns housing dataframe.
     '''
 
-    housing = pd.read_csv('City_Zhvi_AllHomes.csv')
     start=housing.columns.get_loc('2000-01')
     end = housing.columns.get_loc('2016-08')
 

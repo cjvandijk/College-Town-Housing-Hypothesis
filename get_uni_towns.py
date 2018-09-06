@@ -1,4 +1,4 @@
-def get_list_of_university_towns():
+def get_list_of_university_towns(utowns):
     '''Returns a DataFrame of towns and the states they are in from the 
     university_towns.txt file.
 
@@ -13,12 +13,10 @@ def get_list_of_university_towns():
        may need to be removed.
     '''
 
-    utowns = pd.read_table('university_towns.txt', header=None, names = ['RegionName'])
-
     cur_state, edit = '', '[edit]'
     utowns['State'] = utowns.apply(fill_state, axis = 1)
     utowns = utowns[~utowns['RegionName'].str.endswith(edit)]
-    utowns['State'] = utowns['State'].str[0:-6]
+    utowns.loc[:,'State'] = utowns.loc[:,'State'].str[0:-6]
     utowns['RegionName'] = utowns.apply(clean_region, axis = 1)
     states = utowns['State']
     utowns.drop(labels=['State'], axis=1,inplace = True)
