@@ -1,4 +1,5 @@
 # Housing-Hypothesis
+Note: Python python3.5.6 used, packages in requirements.txt. <p>
 This project uses data from several sources to test the hypothesis that housing prices in university towns do not suffer from economic recession as much as in non-university towns.
 
 Data is prepared: 
